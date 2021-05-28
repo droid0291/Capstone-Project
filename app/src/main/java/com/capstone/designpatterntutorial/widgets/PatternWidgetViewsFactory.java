@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Binder;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -12,7 +13,6 @@ import com.capstone.designpatterntutorial.R;
 import com.capstone.designpatterntutorial.database.DesignPatternContract.FavoritePatternEntry;
 import com.capstone.designpatterntutorial.views.activities.HomeActivity;
 
-import timber.log.Timber;
 
 import static android.content.ContentValues.TAG;
 
@@ -35,7 +35,7 @@ public class PatternWidgetViewsFactory implements RemoteViewsService.RemoteViews
 
     @Override
     public void onCreate() {
-        Timber.tag(TAG).d("Widget :: onCreate");
+        Log.d(TAG,"Widget :: onCreate");
         cursor = mContext.getContentResolver().query(FavoritePatternEntry.CONTENT_URI,
                 FavoritePatternEntry.FAVORITE_PATTERN_COLUMNS,
                 null, null, FavoritePatternEntry.COLUMN_NAME);
@@ -48,7 +48,7 @@ public class PatternWidgetViewsFactory implements RemoteViewsService.RemoteViews
         if (cursor != null) {
             cursor.close();
         }
-        Timber.tag(TAG).d("Widget :: onDataSetChanged");
+        Log.d(TAG, "Widget :: onDataSetChanged");
         cursor = mContext.getContentResolver().query(FavoritePatternEntry.CONTENT_URI,
                 FavoritePatternEntry.FAVORITE_PATTERN_COLUMNS,
                 null, null, FavoritePatternEntry.COLUMN_NAME);
@@ -68,7 +68,7 @@ public class PatternWidgetViewsFactory implements RemoteViewsService.RemoteViews
 
     @Override
     public RemoteViews getViewAt(int position) {
-        Timber.tag(TAG).d("Widget :: getViewAt : " + position);
+        Log.d(TAG, "Widget :: getViewAt : " + position);
 
         RemoteViews row = new RemoteViews(mContext.getPackageName(),
                 R.layout.list_item_quote_widget);

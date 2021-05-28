@@ -10,8 +10,6 @@ import com.capstone.designpatterntutorial.model.events.FavoriteScreenEvent;
 import com.capstone.designpatterntutorial.model.favorite.FavoriteScreenData;
 import com.capstone.designpatterntutorial.services.FavoriteScreenLoaderTask;
 
-import org.greenrobot.eventbus.EventBus;
-
 import javax.inject.Inject;
 
 /**
@@ -26,9 +24,6 @@ public class FavoritePresenter implements LoaderManager.LoaderCallbacks<Favorite
 
     @Inject
     ContentResolver contentResolver;
-
-    @Inject
-    EventBus eventBus;
 
 
     public FavoritePresenter(MyApplication application) {
@@ -51,7 +46,6 @@ public class FavoritePresenter implements LoaderManager.LoaderCallbacks<Favorite
 
     @Override
     public void onLoadFinished(Loader<FavoriteScreenData> loader, FavoriteScreenData data) {
-        eventBus.post(new FavoriteScreenEvent(data));
     }
 
     @Override

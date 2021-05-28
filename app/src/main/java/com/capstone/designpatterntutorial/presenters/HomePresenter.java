@@ -10,8 +10,6 @@ import com.capstone.designpatterntutorial.model.events.MainScreenEvent;
 import com.capstone.designpatterntutorial.model.mainscreen.MainScreenData;
 import com.capstone.designpatterntutorial.services.MainScreenLoaderTask;
 
-import org.greenrobot.eventbus.EventBus;
-
 import javax.inject.Inject;
 
 /**
@@ -26,9 +24,6 @@ public class HomePresenter implements LoaderManager.LoaderCallbacks<MainScreenDa
 
     @Inject
     ContentResolver mContentResolver;
-
-    @Inject
-    EventBus eventBus;
 
     @Inject
     public HomePresenter(MyApplication application) {
@@ -47,7 +42,6 @@ public class HomePresenter implements LoaderManager.LoaderCallbacks<MainScreenDa
 
     @Override
     public void onLoadFinished(Loader<MainScreenData> loader, MainScreenData data) {
-        eventBus.post(new MainScreenEvent(data));
     }
 
     @Override
@@ -55,7 +49,4 @@ public class HomePresenter implements LoaderManager.LoaderCallbacks<MainScreenDa
 
     }
 
-    public void getRecentsPattern(LoaderManager loaderManager) {
-
-    }
 }

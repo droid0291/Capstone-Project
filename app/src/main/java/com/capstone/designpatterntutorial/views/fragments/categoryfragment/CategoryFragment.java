@@ -1,7 +1,6 @@
 package com.capstone.designpatterntutorial.views.fragments.categoryfragment;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -15,10 +14,9 @@ import com.capstone.designpatterntutorial.di.MyApplication;
 import com.capstone.designpatterntutorial.model.mainscreen.Category;
 import com.capstone.designpatterntutorial.model.mainscreen.MainScreenData;
 import com.capstone.designpatterntutorial.views.fragments.BaseFragment;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * Created by gubbave on 5/2/2017.
@@ -31,10 +29,8 @@ public class CategoryFragment extends BaseFragment implements TabLayout.OnTabSel
 
     private MainScreenData mainScreenData;
 
-    @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
 
-    @BindView(R.id.view_pager)
     ViewPager mViewPager;
 
 

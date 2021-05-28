@@ -9,8 +9,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
-import androidx.appcompat.widget.LinearLayoutManager;
-import androidx.appcompat.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -31,9 +33,6 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import timber.log.Timber;
-
 /**
  * Created by gubbave on 5/19/2017.
  */
@@ -46,13 +45,10 @@ public class NavigationMenuFragment extends BaseFragment implements NavigationMe
     private static final int DEFAULT_SELECTED_INDEX = 0;
     private static final int PERMISSION_ACCESS_FINE_LOCATION = 1;
 
-    @BindView(R.id.navigation_menu_list)
     RecyclerView mRecyclerView;
 
-    @BindView(R.id.curentLocation)
     TextView mCurrentLocation;
 
-    @BindView(R.id.title)
     TextView title;
 
     @Inject
@@ -157,11 +153,11 @@ public class NavigationMenuFragment extends BaseFragment implements NavigationMe
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Timber.tag(TAG).d(" onConnected ");
+        Log.d(TAG," onConnected ");
         //Check about the Last Known location
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Timber.tag(TAG).d("Permission Not Granted");
+            Log.d(TAG,"Permission Not Granted");
             ActivityCompat.requestPermissions(getActivity(),
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSION_ACCESS_FINE_LOCATION);
@@ -174,7 +170,7 @@ public class NavigationMenuFragment extends BaseFragment implements NavigationMe
             addresses = gcd.getFromLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude(), 1);
             if (addresses.size() > 0) {
                 Address addr = addresses.get(0);
-                Timber.tag(TAG).d("Locality :: " + addr.getLocality() + " Country Name :: " + addr.getCountryName());
+                Log.d(TAG, "Locality :: " + addr.getLocality() + " Country Name :: " + addr.getCountryName());
                 String location = addr.getLocality() + ", " + addr.getCountryName();
                 mCurrentLocation.setText(location);
 
@@ -198,7 +194,7 @@ public class NavigationMenuFragment extends BaseFragment implements NavigationMe
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSION_ACCESS_FINE_LOCATION:
-                Timber.tag(TAG).d("Permission granted");
+                Log.d(TAG,"Permission granted");
                 mGoogleApiClient.reconnect();
                 break;
             default:
@@ -208,11 +204,11 @@ public class NavigationMenuFragment extends BaseFragment implements NavigationMe
 
     @Override
     public void onConnectionSuspended(int i) {
-        Timber.tag(TAG).d(" onConnectionSuspended ");
+        Log.d(TAG," onConnectionSuspended ");
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Timber.tag(TAG).d(" onConnectionFailed ");
+        Log.d(TAG," onConnectionFailed ");
     }
 }

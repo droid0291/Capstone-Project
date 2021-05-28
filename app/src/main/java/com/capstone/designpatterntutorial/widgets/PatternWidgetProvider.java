@@ -5,12 +5,12 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.capstone.designpatterntutorial.R;
 import com.capstone.designpatterntutorial.views.activities.HomeActivity;
 
-import timber.log.Timber;
 
 /**
  * Created by gubbave on 12/29/2016.
@@ -22,7 +22,7 @@ public class PatternWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Timber.d(TAG, "onReceive()");
+        Log.d(TAG, "onReceive()");
 
         if (intent.getAction().equalsIgnoreCase(AppWidgetManager.ACTION_APPWIDGET_UPDATE)) {
             int[] ids = intent.getExtras().getIntArray(AppWidgetManager.EXTRA_APPWIDGET_IDS);
@@ -33,7 +33,7 @@ public class PatternWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        Timber.d(TAG, "onUpdate()");
+        Log.d(TAG, "onUpdate()");
 
         for (int appWidgetId : appWidgetIds) {
 

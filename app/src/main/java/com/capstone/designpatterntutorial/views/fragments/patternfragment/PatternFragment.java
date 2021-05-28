@@ -2,8 +2,6 @@ package com.capstone.designpatterntutorial.views.fragments.patternfragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.webkit.WebView;
@@ -13,8 +11,9 @@ import com.capstone.designpatterntutorial.model.mainscreen.Pattern;
 import com.capstone.designpatterntutorial.services.FavoriteDbService;
 import com.capstone.designpatterntutorial.views.activities.HomeActivity;
 import com.capstone.designpatterntutorial.views.fragments.BaseFragment;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import butterknife.BindView;
 
 /**
  * Created by gubbave on 5/19/2017.
@@ -24,13 +23,10 @@ public class PatternFragment extends BaseFragment {
 
     private static final String PATTERN_DETAILS = "PatternDetails";
 
-    @BindView(R.id.pattern_description)
     WebView description;
 
-    @BindView(R.id.favorite_fab)
     FloatingActionButton favorite;
 
-    @BindView(R.id.collapsingToolbar)
     CollapsingToolbarLayout collapsingToolbar;
 
     private Pattern patternData;

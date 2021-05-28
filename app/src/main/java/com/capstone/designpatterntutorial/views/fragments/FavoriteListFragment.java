@@ -2,8 +2,9 @@ package com.capstone.designpatterntutorial.views.fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.appcompat.widget.LinearLayoutManager;
-import androidx.appcompat.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,13 +17,7 @@ import com.capstone.designpatterntutorial.presenters.FavoritePresenter;
 import com.capstone.designpatterntutorial.views.activities.HomeActivity;
 import com.capstone.designpatterntutorial.views.adapters.MainListAdapter;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import javax.inject.Inject;
-
-import butterknife.BindView;
 
 /**
  * Created by gubbave on 7/12/2017.
@@ -36,18 +31,12 @@ public class FavoriteListFragment extends BaseFragment implements MainListAdapte
     private FavoriteScreenData favoriteScreenData;
     private MainListAdapter mAdapter;
 
-    @BindView(R.id.favorite_list)
     RecyclerView mRecyclerView;
 
-    @BindView(R.id.message)
     TextView mMessage;
 
     @Inject
     FavoritePresenter favoritePresenter;
-
-    @Inject
-    EventBus mEventBus;
-
 
     public static Fragment newInstance() {
         Fragment fragment = new FavoriteListFragment();
@@ -65,13 +54,6 @@ public class FavoriteListFragment extends BaseFragment implements MainListAdapte
         Fragment fragment = new FavoriteListFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mEventBus.isRegistered(this))
-            mEventBus.unregister(this);
     }
 
     @Override
@@ -100,11 +82,6 @@ public class FavoriteListFragment extends BaseFragment implements MainListAdapte
             return;
 
         loadScreenData();
-    }
-
-    @Override
-    protected void initFragmentCreation(Bundle savedInstanceState) {
-        mEventBus.register(this);
     }
 
     private void loadScreenData() {
@@ -139,7 +116,6 @@ public class FavoriteListFragment extends BaseFragment implements MainListAdapte
         ((HomeActivity) getActivity()).onItemClicked(pattern);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onFavoriteScreenEvent(FavoriteScreenEvent event) {
         favoriteScreenData = event.getFavoriteScreenData();
         loadScreenData();

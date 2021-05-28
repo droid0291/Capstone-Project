@@ -13,9 +13,6 @@ import android.widget.TextView;
 import com.capstone.designpatterntutorial.R;
 import com.capstone.designpatterntutorial.views.activities.HomeActivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by gubbave on 5/3/2017.
@@ -23,14 +20,9 @@ import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
 
-    private Unbinder mUnBinder;
 
-    @Nullable
-    @BindView(R.id.title)
     protected TextView toolbarTitle;
 
-    @Nullable
-    @BindView(R.id.tool_bar)
     protected Toolbar toolbar;
 
 
@@ -47,7 +39,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(getLayoutId(), container, false);
-        mUnBinder = ButterKnife.bind(this, rootView);
 
         initToolbar();
         initFragment(rootView);
@@ -66,12 +57,6 @@ public abstract class BaseFragment extends Fragment {
                 }
             });
         }
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mUnBinder.unbind();
     }
 
     //Inject the Fragment to dagger

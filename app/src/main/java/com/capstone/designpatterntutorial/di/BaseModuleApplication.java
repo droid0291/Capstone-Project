@@ -10,7 +10,6 @@ import com.capstone.designpatterntutorial.presenters.FavoritePresenter;
 import com.capstone.designpatterntutorial.presenters.HomePresenter;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -46,17 +45,6 @@ public class BaseModuleApplication {
     @Singleton
     ContentResolver providesContentResolver(Application application) {
         return application.getContentResolver();
-    }
-
-    @Provides
-    EventBus providesEventBus(Application application) {
-        return EventBus.getDefault();
-    }
-
-    @Provides
-    @Named("sticky")
-    EventBus providesStickyEventBus(Application application) {
-        return EventBus.getDefault();
     }
 
     @Provides
