@@ -2,10 +2,10 @@ package com.capstone.designpatterntutorial.views.activities;
 
 import android.content.ContentResolver;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Gravity;
 
 import com.capstone.designpatterntutorial.R;

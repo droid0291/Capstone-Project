@@ -1,9 +1,9 @@
 package com.capstone.designpatterntutorial.views.fragments.categoryfragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.LinearLayoutManager;
+import androidx.appcompat.widget.RecyclerView;
 import android.view.View;
 
 import com.capstone.designpatterntutorial.R;

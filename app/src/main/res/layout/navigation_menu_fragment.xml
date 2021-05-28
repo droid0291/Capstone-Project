@@ -7,7 +7,7 @@
 
     <include layout="@layout/nav_header_main" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.appcompat.widget.RecyclerView
         android:id="@+id/navigation_menu_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
